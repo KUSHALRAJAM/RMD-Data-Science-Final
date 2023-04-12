@@ -1,0 +1,36 @@
+View(sunspots_per_year)
+# You can call this data set by simply typing up its name #
+plot(x = sunspots_per_year$time, y = sunspots_per_year$sunspot.year,
+ main ="Sunspots Per Year",
+ xlab="Years after 1700 ",
+ ylab="Number of Sunspots ",
+ col = as.factor(sunspots_per_year$time),
+ pch=19)
+install.packages(c("ggplot2"))
+# You have to install these packages when opening a new session #
+hist_sunspots <- ggplot(data = sunspots_per_year, aes(x = time)) +
+ geom_histogram(fill = "yellow", color = "black", bins = 10) +
+ ggtitle("Sunspots per Year from 1700 to 1988") +
+ xlab("Time (years)") +
+ ylab("Number of Sunspots") +
+ # Change background theme
+ theme_classic()
+print(hist_sunspots)
+scatter.smooth(x=sunspots_per_year$time, y =
+sunspots_per_year$sunspot.year, main = "Sunspots Per Year")
+library(e1071) #for skewness function
+plot(density(sunspots_per_year$sunspot.year), main = "Density Plot:
+Sunspots Per Year",
+ ylab = "Sunspots", sub=paste("Skewness:",
+round(e1071::skewness(sunspots_per_year$sunspot.year))))
+polygon(density(cars$dist), col = "yellow")
+cor(sunspots_per_year$time,sunspots_per_year$sunspot.year)
+linreg_sunspots <- lm(sunspot.year ~ time, data = sunspots_per_year)
+print(linreg_sunspots)
+plot(x = sunspots_per_year$time, y = sunspots_per_year$sunspot.year,
+ main ="Sunspots Per Year",
+ xlab="Years after 1700 ",
+ ylab="Number of Sunspots ",
+ col = "tan4",
+ pch=19)
+abline(lm(sunspot.year~time,data=sunspots_per_year),col='red')
